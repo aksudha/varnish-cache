@@ -1,0 +1,47 @@
+
++libh(teken.h)
+
+// Tell FlexeLint when these don't return
+-function(exit, vtc_fatal)
+-function(__assert(1), vtc_log(2))
+-function(__assert(1), vtc_dump(2))
+-function(__assert(1), vtc_hexdump(2))
+
+-emacro({779}, ENC)		// String constant in comparison operator '!='
+-emacro({506}, CHKFRAME)	// Constant value Boolean
+
+-sem(http_process_cleanup, custodial(1))
+
+-esym(522, teken_subr_*)
+
+-esym(850, av)
+
+-esym(534, snprintf)		// Only for varnishtest, and not really nice
+
+-esym(765, http_cmds)		// No, cannot be made static
+
+-e712	// 14      Info    712     Loss of precision (___) (___ to ___)
+-e747	// 16      Info    747     Significant prototype coercion (___) ___ to ___
+
+-e445	// Reuse of for loop variable '___' at '___' could cause chaos
+-e850	// for loop index variable '___' whose type category is '___' is modified in body of the for loop that began at '___'
+-e443	// for clause irregularity: variable '___' initialized in 1st expression does not match '___' modified in 3rd
+
+-emacro({506,774},FEATURE)
+-emacro({506,774},STRTOU32_CHECK)
+
+-e679	// Suspicious Truncation in arithmetic expression combining with pointer
+
+-e763	// Redundant declaration for symbol '...' previously declared
+
+//
+-e732   // Loss of sign (arg. no. 2) (int to unsigned
+-e713	// Loss of precision (assignment) (unsigned long long to long long)
+-emacro(835, STRTOU32_CHECK)    // A zero has been given as ___ argument to operator '___'
+
+-e788	// enum value not used in defaulted switch
+
+-efile(451, cmds.h)
+-efile(451, vmods.h)
+-efile(451, programs.h)
+-efile(451, vtc_h2_stattbl.h)

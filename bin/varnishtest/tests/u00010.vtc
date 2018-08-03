@@ -1,0 +1,24 @@
+varnishtest	"trivial run of varnishtop in curses mode"
+
+server s1 {
+	rxreq
+	txresp -hdr "Connection: close"
+} -start
+
+varnish v1 -vcl+backend {} -start
+
+process p1 -dump {varnishtop -n ${v1_name}} -start
+
+process p1 -winsz 30 80
+
+process p1 -expect-text 1 1 {list length}
+
+delay 1
+
+client c1 {
+	txreq
+	rxresp
+} -run
+
+process p1 -expect-text 0 0 {Fetch_Body}
+process p1 -screen_dump -write {q} -wait

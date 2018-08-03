@@ -1,0 +1,6 @@
+
++libh mgt_event.h
+
+-efile(451, varnishstat_options.h)
+
+-sem(usage, r_no)

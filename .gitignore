@@ -1,52 +1,142 @@
-# Prerequisites
-*.d
+# Matches ALL Makefile and Makefile.in occurrences 
+Makefile
+Makefile.in
 
-# Object files
+# ...
+.deps/
+.libs/
 *.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
 *.a
-*.la
 *.lo
+*.la
+*~
+*.sw[op]
+*.trs
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# Various auto-tools artifacts
+/aclocal.m4
+/autom4te.cache/
+/build-aux
+/compile
+/config.guess
+/config.h
+/config.h.in
+/config.h.in~
+/config.log
+/config.status
+/config.sub
+/configure
+/configure.lineno
+/depcomp
+/install-sh
+/libtool
+/ltmain.sh
+/m4/libtool.m4
+/m4/ltoptions.m4
+/m4/ltsugar.m4
+/m4/ltversion.m4
+/m4/lt~obsolete.m4
+/missing
+/stamp-h1
+/varnishapi.pc
+/varnishapi-uninstalled.pc
+TAGS
+tags
+cscope.*out
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+# Default vcl made from bin/varnishd/default.vcl
+/bin/varnishd/builtin_vcl.c
+/etc/builtin.vcl
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+# Various auto-generated code snippets
+/bin/varnishd/vhp_hufdec.h
+/bin/varnishd/vhp_gen_hufdec
+/include/vcl.h
+/include/vrt_obj.h
+/include/vmod_abi.h
+/include/tbl/vcl_returns.h
+/include/tbl/vrt_stv_var.h
+/include/tbl/vcc_types.h
+/include/vcs_version.h
+/lib/libvcc/vcc_fixed_token.c
+/lib/libvcc/vcc_obj.c
+/lib/libvcc/vcc_token_defs.h
+/lib/libvarnishapi/vsl2rst
+/lib/libvarnishapi/vxp_fixed_token.c
+/lib/libvarnishapi/vxp_tokens.h
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# Stats
+/bin/varnishd/VSC_*.c
+/bin/varnishd/VSC_*.h
+
+# Misc. generated files for included vmods.
+/lib/libvmod_*/VSC_*.c
+/lib/libvmod_*/VSC_*.h
+/lib/libvmod_*/vcc_if.c
+/lib/libvmod_*/vcc_if.h
+/lib/libvmod_*/vmod_*.rst
+
+# Man-files and binaries
+/man/*.1
+/man/*.3
+/man/*.7
+/doc/sphinx/include
+/doc/sphinx/*/*generated.rst
+/bin/varnishadm/varnishadm
+/bin/varnishd/varnishd
+/bin/varnishhist/varnishhist
+/bin/varnishlog/varnishlog
+/bin/varnishncsa/varnishncsa
+/bin/varnishstat/varnishstat
+/bin/varnishstat/vsc2rst
+/bin/varnishtest/teken_state.h
+/bin/varnishtest/varnishtest
+/bin/varnishtop/varnishtop
+
+# Doc-stuff generated from xml
+/doc/*.html
+/doc/sphinx/build/
+/doc/sphinx/conf.py
+
+# graphviz-generated
+/doc/graphviz/*.pdf
+
+# NetBeans insists on this
+/nbproject/private/
+
+# Test droppings
+/bin/varnishd/*.log
+/bin/varnishd/vhp_decode_test
+/bin/varnishd/vhp_table_test
+/bin/varnishtest/*.log
+/bin/varnishtest/tests/*.log
+/bin/varnishtest/tests/*.log-t
+/include/*.log
+/include/_vrt.c
+/include/_vrt_test
+/include/vrt_test
+/include/vbm_test
+/lib/libvarnish/*.log
+/lib/libvarnish/binheap
+/lib/libvarnish/vjsn_test
+/lib/libvarnish/vnum_c_test
+/lib/libvarnishapi/*.log
+/lib/libvarnishapi/vsl_glob_test
+
+# vtest.sh droppings
+/tools/tmp/
+/tools/_vtest_tmp/
+/tools/varnish-cache/
+/tools/vt_key
+/tools/vt_key.pub
+
+# fuzzers
+/bin/varnishd/esi_parse_fuzzer
+
+# Coverity output
+/cov-int
+/myproject.tgz
+
+# Flexelint droppings
+_.fl
+_.fl.old

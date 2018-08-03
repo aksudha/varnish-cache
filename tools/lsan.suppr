@@ -1,0 +1,24 @@
+# varnishtest
+leak:varnishtest
+# pp->{def,min,max}
+leak:MCF_ParamConf
+# pp->{def,min,max}
+leak:mcf_wash_param
+# av
+leak:STV_Config
+# av
+leak:HSH_config
+#
+leak:vcc_
+leak:VSL_Setup
+leak:WRK_BgThread
+#
+leak:hpack/vhp_gen_hufdec.c
+#
+leak:binheap_new
+# ev
+leak:mct_callback
+#
+leak:backtrace_symbols
+#
+leak:vsmw_newcluster

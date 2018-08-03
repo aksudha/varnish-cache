@@ -1,0 +1,60 @@
+varnishtest "VCL compiler vmod coverage / vmod loading"
+
+feature topbuild
+
+varnish v1 -errvcl {Module debug conflicts with other symbol.} {
+	backend b { .host = "127.0.0.1"; }
+	sub debug {}
+	import debug;
+
+	sub vcl_recv {
+		call debug;
+	}
+}
+
+server s1 {
+	rxreq
+	txresp
+} -start
+
+varnish v1 -vcl+backend {
+	import std;
+}
+
+varnish v1 -cliok "param.set vcc_unsafe_path off"
+
+varnish v1 -errvcl {'import ... from path ...' is unsafe.} {
+	backend default { .host = "${s1_sock}"; }
+	import std from "${topbuild}/lib/libvmod_std/.libs/";
+}
+
+varnish v1 \
+    -cliok "param.set vmod_path /nowhere:${topbuild}/lib/libvmod_std/.libs/"
+
+varnish v1 -vcl+backend {
+	import std;
+}
+
+varnish v1 -cliok "param.set vcc_unsafe_path on"
+
+varnish v1 -cliok "param.set vmod_path /nowhere:/else"
+
+varnish v1 -vcl+backend {
+	import std from "${topbuild}/lib/libvmod_std/.libs/";
+}
+
+varnish v1 -errvcl {Malformed VMOD std} {
+	backend default { .host = "${s1_sock}"; }
+	import std from "${topbuild}/lib/libvmod_debug/.libs/libvmod_debug.so";
+}
+
+# Check creation and cleanup of copied shared objects for VMODs
+shell "test -e ./v1/vmod_cache/_vmod_std.*"
+
+# In case varnishtest was invoked with -L or -l, in which case the
+# bit is switched on.
+varnish v1 -cliok "param.set debug -vmod_so_keep"
+
+varnish v1 -stop
+varnish v1 -cleanup
+shell -err "test -e ./v1/vmod_cache/_vmod_std.*"

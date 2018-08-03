@@ -1,0 +1,20 @@
+// Flexelint configuration file for VCL compiler output
+//
+
+-esym(763, sess)	// Redundant declaration for symbol 'sess'
+-esym(763, cli)		// Redundant declaration for symbol 'cli'
+
+-esym(750, VCL_RET_*)	// not ref
+-esym(750, VCL_MET_*)	// not ref
+
+-esym(753, vsb)		// not ref
+-esym(750, vrt_*)	// not ref
+-esym(753, vrt_*)	// not ref
+-esym(750, VRT_*)	// not ref
+
+			// Harmless
+
+-e752			// local declarator [...] not referenced
+-e754			// local structure member [...] not referenced
+-e526			// Symbol [...] not defined
+
